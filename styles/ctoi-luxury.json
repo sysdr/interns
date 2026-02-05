@@ -1,0 +1,97 @@
+{
+	"version": 3,
+	"title": "ctoi Luxury",
+	"description": "Minimalist luxury with pure white and metallic gold.",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#FFFFFF",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#1A1A1A",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#D4AF37",
+					"name": "Gold Primary",
+					"slug": "gold-primary"
+				},
+				{
+					"color": "#C5A028",
+					"name": "Gold Dark",
+					"slug": "gold-dark"
+				},
+				{
+					"color": "#F5E6C8",
+					"name": "Gold Light",
+					"slug": "gold-light"
+				},
+				{
+					"color": "#B8860B",
+					"name": "Gold Hover",
+					"slug": "gold-hover"
+				},
+				{
+					"color": "#686868",
+					"name": "Accent 4",
+					"slug": "accent-4"
+				},
+				{
+					"color": "#F8F8F8",
+					"name": "Muted",
+					"slug": "muted"
+				},
+				{
+					"color": "rgba(26, 26, 26, 0.08)",
+					"name": "Accent 6",
+					"slug": "accent-6"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var:preset|color|base",
+			"text": "var:preset|color|contrast"
+		},
+		"blocks": {
+			"core/group": {
+				"css": "&.has-background { box-shadow: 0 4px 24px rgba(26, 26, 26, 0.06); border-radius: 8px; }"
+			}
+		},
+		"elements": {
+			"button": {
+				"color": {
+					"background": "var:preset|color|gold-primary",
+					"text": "var:preset|color|base"
+				},
+				":hover": {
+					"color": {
+						"background": "var:preset|color|gold-hover",
+						"text": "var:preset|color|base"
+					}
+				},
+				"border": {
+					"radius": "4px"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|gold-primary"
+				},
+				":hover": {
+					"color": {
+						"text": "var:preset|color|gold-hover"
+					},
+					"typography": {
+						"textDecoration": "underline"
+					}
+				}
+			}
+		}
+	}
+}

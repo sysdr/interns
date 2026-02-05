@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" fill="none">
+  <defs>
+    <linearGradient id="heroGrad" x1="0" y1="0" x2="1200" y2="400">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#f8f9fa"/>
+      <stop offset="1" stop-color="#e8eaed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#heroGrad)"/>
+  <!-- Abstract people/team shapes - Google style -->
+  <circle cx="200" cy="120" r="50" fill="#4285F4" opacity="0.15"/>
+  <circle cx="200" cy="120" r="30" fill="#4285F4" opacity="0.25"/>
+  <circle cx="600" cy="100" r="45" fill="#34A853" opacity="0.15"/>
+  <circle cx="600" cy="100" r="25" fill="#34A853" opacity="0.25"/>
+  <circle cx="1000" cy="130" r="40" fill="#FBBC05" opacity="0.15"/>
+  <circle cx="1000" cy="130" r="22" fill="#FBBC05" opacity="0.25"/>
+  <!-- Search bar - prominent Google style -->
+  <rect x="200" y="240" width="800" height="64" rx="32" fill="#fff" stroke="#dadce0" stroke-width="1"/>
+  <circle cx="260" cy="272" r="14" fill="#4285F4"/>
+  <rect x="300" y="258" width="300" height="10" rx="5" fill="#dadce0"/>
+  <rect x="680" y="252" width="120" height="40" rx="4" fill="#4285F4"/>
+  <text x="740" y="278" font-family="Roboto,sans-serif" font-size="14" font-weight="500" fill="#fff" text-anchor="middle">Search</text>
+</svg>

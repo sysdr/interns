@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" fill="none">
+  <defs>
+    <linearGradient id="candHeroGrad" x1="0" y1="0" x2="1200" y2="320">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#f8f9fa"/>
+      <stop offset="1" stop-color="#e8eaed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" fill="url(#candHeroGrad)"/>
+  <!-- Profile avatars - candidate search -->
+  <circle cx="200" cy="100" r="45" fill="#4285F4" opacity="0.15"/>
+  <circle cx="200" cy="100" r="28" fill="#4285F4" opacity="0.25"/>
+  <circle cx="400" cy="90" r="40" fill="#34A853" opacity="0.15"/>
+  <circle cx="400" cy="90" r="24" fill="#34A853" opacity="0.25"/>
+  <circle cx="600" cy="105" r="42" fill="#FBBC05" opacity="0.15"/>
+  <circle cx="600" cy="105" r="26" fill="#FBBC05" opacity="0.25"/>
+  <circle cx="800" cy="95" r="38" fill="#EA4335" opacity="0.15"/>
+  <circle cx="800" cy="95" r="22" fill="#EA4335" opacity="0.25"/>
+  <circle cx="1000" cy="100" r="40" fill="#4285F4" opacity="0.15"/>
+  <circle cx="1000" cy="100" r="24" fill="#4285F4" opacity="0.25"/>
+  <!-- Search bar -->
+  <rect x="150" y="200" width="900" height="60" rx="30" fill="#fff" stroke="#dadce0" stroke-width="1"/>
+  <circle cx="210" cy="230" r="12" fill="#4285F4"/>
+  <rect x="250" y="218" width="250" height="8" rx="4" fill="#dadce0"/>
+  <rect x="250" y="232" width="180" height="8" rx="4" fill="#e8eaed"/>
+  <rect x="850" y="210" width="120" height="40" rx="4" fill="#4285F4"/>
+  <text x="910" y="236" font-family="Roboto,sans-serif" font-size="14" font-weight="500" fill="#fff" text-anchor="middle">Search</text>
+</svg>
