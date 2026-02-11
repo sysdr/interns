@@ -1,10 +1,27 @@
-<!-- wp:template-part {"slug":"header-ctoi","area":"header"} /-->
-
-<!-- wp:group {"tagName":"main","className":"ctoi-archive-main ctoi-gc-main","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"clamp(12px,2vw,24px)","bottom":"clamp(12px,2vw,24px)","left":"clamp(12px,2vw,24px)","right":"clamp(12px,2vw,24px)"}}},"layout":{"type":"constrained","contentSize":"min(96vw, 1200px)"}} -->
-<main class="wp-block-group ctoi-archive-main ctoi-gc-main" style="margin-top:0;margin-bottom:0;padding-top:clamp(12px,2vw,24px);padding-bottom:clamp(12px,2vw,24px);padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px)">
-	<!-- wp:pattern {"slug":"ctoi/hero-internship"} /-->
-	<!-- wp:pattern {"slug":"ctoi/internship-grid"} /-->
+<!-- wp:template-part {"slug":"header"} /-->
+<!-- wp:group {"tagName":"main","className":"ctoi-page ctoi-portal","style":{"spacing":{"padding":{"top":"clamp(24px,4vw,48px)","bottom":"clamp(24px,4vw,48px)"}}},"layout":{"type":"constrained","contentSize":"min(96vw, 1280px)"}} -->
+<main class="wp-block-group ctoi-page ctoi-portal" style="padding-top:clamp(24px,4vw,48px);padding-bottom:clamp(24px,4vw,48px)">
+	<!-- wp:heading {"level":1,"className":"ctoi-h1"} -->
+	<h1 class="wp-block-heading ctoi-h1">Internships</h1>
+	<!-- /wp:heading -->
+	<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"32px"}}}} -->
+	<div class="wp-block-columns">
+		<!-- wp:column {"width":"25%"} -->
+		<div class="wp-block-column" style="flex-basis:25%">
+			<!-- wp:shortcode -->
+			[ctoi_internship_filters]
+			<!-- /wp:shortcode -->
+		</div>
+		<!-- /wp:column -->
+		<!-- wp:column {"width":"75%"} -->
+		<div class="wp-block-column" style="flex-basis:75%">
+			<!-- wp:shortcode -->
+			[ctoi_internship_list]
+			<!-- /wp:shortcode -->
+		</div>
+		<!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
 </main>
 <!-- /wp:group -->
-
-<!-- wp:template-part {"slug":"footer-ctoi","area":"footer"} /-->
+<!-- wp:template-part {"slug":"footer"} /-->

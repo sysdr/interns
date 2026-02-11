@@ -1,17 +1,14 @@
 <?php
 /**
- * Title: FAQ
- * Slug: ctoi/page-faq
+ * Title: Choose Role
+ * Slug: ctoi/page-choose-role
  * Categories: ctoi
  */
 ?>
 <!-- wp:group {"align":"full","className":"ctoi-page","style":{"spacing":{"padding":{"top":"clamp(24px,4vw,48px)","bottom":"clamp(24px,4vw,48px)"}}},"layout":{"type":"constrained","contentSize":"720px"}} -->
 <div class="wp-block-group alignfull ctoi-page" style="padding-top:clamp(24px,4vw,48px);padding-bottom:clamp(24px,4vw,48px)">
-	<!-- wp:heading -->
-	<h1 class="wp-block-heading ctoi-h1"><?php esc_html_e( 'FAQ', 'ctoi' ); ?></h1>
-	<!-- /wp:heading -->
-	<!-- wp:paragraph -->
-	<p><?php esc_html_e( 'Frequently asked questions about the ctoi internship portal.', 'ctoi' ); ?></p>
-	<!-- /wp:paragraph -->
+	<!-- wp:shortcode -->
+	[ctoi_choose_role]
+	<!-- /wp:shortcode -->
 </div>
 <!-- /wp:group -->

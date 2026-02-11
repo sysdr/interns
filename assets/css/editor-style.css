@@ -1,7 +1,7 @@
-/*
- * Link styles
- */
-a {
-	text-decoration-thickness: 1px !important;
-	text-underline-offset: .1em;
+/* Editor styles — matches portal.css variables */
+:root {
+  --ctoi-primary: #1A73E8;
+  --ctoi-charcoal: #202124;
+  --ctoi-muted: #5F6368;
+  --ctoi-border: #DADCE0;
 }

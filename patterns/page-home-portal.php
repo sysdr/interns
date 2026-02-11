@@ -1,166 +1,91 @@
 <?php
 /**
- * Title: Home Page (Google Careers Style)
+ * Title: Portal Home
  * Slug: ctoi/page-home-portal
- * Categories: ctoi_internship, ctoi_page
- * Description: Home page matching Google Careers design.
- *
- * @package WordPress
- * @subpackage ctoi
- * @since ctoi 1.0
+ * Categories: ctoi
+ * Description: Hero, Global Search, Feature Grid, Life at ctoi
  */
-
-$hero_img = get_theme_file_uri( 'assets/images/hero-careers.svg' );
 ?>
-<!-- wp:group {"align":"full","className":"ctoi-home-hero ctoi-google-careers-page","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}},"layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull ctoi-home-hero ctoi-google-careers-page" style="padding-top:0;padding-bottom:0">
-	<!-- Hero: Search for your career -->
-	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"clamp(12px,2vw,20px)","bottom":"clamp(12px,2vw,20px)","left":"clamp(12px,2vw,24px)","right":"clamp(12px,2vw,24px)"}}},"color":{"background":"#ffffff"},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull has-background" style="background-color:#ffffff;padding-top:clamp(12px,2vw,20px);padding-bottom:clamp(12px,2vw,20px);padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px)">
-		<!-- wp:group {"layout":{"type":"constrained","contentSize":"min(96vw, 720px)"}} -->
-		<div class="wp-block-group">
-			<!-- wp:heading {"textAlign":"center","level":1,"style":{"typography":{"fontSize":"clamp(1.5rem, 3vw, 2rem)","fontWeight":"400"},"color":{"text":"#202124"}}} -->
-			<h1 class="wp-block-heading has-text-align-center" style="color:#202124;font-size:clamp(1.5rem, 3vw, 2rem);font-weight:400"><?php esc_html_e( 'Search for your career', 'ctoi' ); ?></h1>
-			<!-- /wp:heading -->
-			<!-- wp:spacer {"height":"8px"} -->
-			<div style="height:8px" aria-hidden="true" class="wp-block-spacer"></div>
-			<!-- /wp:spacer -->
-			<!-- wp:search {"label":"<?php esc_attr_e( 'Search internships', 'ctoi' ); ?>","showLabel":false,"placeholder":"<?php esc_attr_e( 'Search by role, skill, or company...', 'ctoi' ); ?>","width":100,"widthUnit":"%","buttonText":"<?php esc_attr_e( 'Search', 'ctoi' ); ?>","style":{"spacing":{"padding":{"top":"10px","bottom":"10px","left":"20px","right":"20px"}},"border":{"width":"1px","color":"#dadce0","radius":"24px"}} /-->
-			<!-- wp:spacer {"height":"12px"} -->
-			<div style="height:12px" aria-hidden="true" class="wp-block-spacer"></div>
-			<!-- /wp:spacer -->
-			<!-- wp:image {"align":"center","sizeSlug":"large","className":"candidate-hero-image","style":{"size":{"width":"100%","height":"140px"}}} -->
-			<figure class="wp-block-image aligncenter size-large candidate-hero-image"><img src="<?php echo esc_url( $hero_img ); ?>" alt="<?php esc_attr_e( 'Search for your career', 'ctoi' ); ?>" style="max-width:100%;max-height:140px;height:auto;object-fit:contain"/></figure>
-			<!-- /wp:image -->
+<!-- wp:group {"align":"full","className":"ctoi-page ctoi-portal","style":{"spacing":{"padding":{"top":"clamp(48px,8vw,96px)","bottom":"clamp(48px,8vw,96px)"}}},"layout":{"type":"constrained","contentSize":"min(96vw, 1200px)"}} -->
+<div class="wp-block-group alignfull ctoi-page ctoi-portal" style="padding-top:clamp(48px,8vw,96px);padding-bottom:clamp(48px,8vw,96px)">
+	<!-- wp:group {"className":"ctoi-hero","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group ctoi-hero">
+		<!-- wp:heading {"textAlign":"center","level":1,"style":{"typography":{"fontSize":"clamp(2.5rem,6vw,4rem)","fontWeight":"600"}}} -->
+		<h1 class="wp-block-heading has-text-align-center">Build for <span class="ctoi-accent">everyone</span>.</h1>
+		<!-- /wp:heading -->
+		<!-- wp:paragraph {"align":"center","className":"ctoi-muted","style":{"typography":{"fontSize":"1.125rem"}}} -->
+		<p class="has-text-align-center ctoi-muted" style="font-size:1.125rem"><?php esc_html_e( 'Find internships. Connect with companies. Launch your career.', 'ctoi' ); ?></p>
+		<!-- /wp:paragraph -->
+		<!-- wp:html -->
+		<div class="ctoi-global-search">
+			<svg class="ctoi-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+			<form action="<?php echo esc_url( home_url( '/internships/' ) ); ?>" method="get" role="search">
+				<input type="search" name="s" placeholder="<?php esc_attr_e( 'Search internships...', 'ctoi' ); ?>" />
+			</form>
+		</div>
+		<!-- /wp:html -->
+		<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2rem"}}}} -->
+		<div class="wp-block-buttons" style="margin-top:2rem">
+			<!-- wp:button -->
+			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/internships/"><?php esc_html_e( 'Browse Internships', 'ctoi' ); ?></a></div>
+			<!-- /wp:button -->
+			<!-- wp:button {"className":"is-style-outline"} -->
+			<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/login/"><?php esc_html_e( 'Sign In', 'ctoi' ); ?></a></div>
+			<!-- /wp:button -->
+		</div>
+		<!-- /wp:buttons -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"className":"ctoi-feature-grid","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group ctoi-feature-grid">
+		<!-- wp:group {"className":"ctoi-feature-item","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group ctoi-feature-item">
+			<div class="ctoi-feature-icon blue">🔍</div>
+			<h3><?php esc_html_e( 'Discover', 'ctoi' ); ?></h3>
+			<p><?php esc_html_e( 'Browse internships from top companies. Filter by role, location, and term.', 'ctoi' ); ?></p>
+		</div>
+		<!-- /wp:group -->
+		<!-- wp:group {"className":"ctoi-feature-item","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group ctoi-feature-item">
+			<div class="ctoi-feature-icon green">✓</div>
+			<h3><?php esc_html_e( 'Apply', 'ctoi' ); ?></h3>
+			<p><?php esc_html_e( 'One-click apply with your resume. Track your applications in your dashboard.', 'ctoi' ); ?></p>
+		</div>
+		<!-- /wp:group -->
+		<!-- wp:group {"className":"ctoi-feature-item","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group ctoi-feature-item">
+			<div class="ctoi-feature-icon red">🚀</div>
+			<h3><?php esc_html_e( 'Launch', 'ctoi' ); ?></h3>
+			<p><?php esc_html_e( 'Get matched with opportunities. Start your career journey today.', 'ctoi' ); ?></p>
 		</div>
 		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- Careers: Jobs, Students, Your career -->
-	<!-- wp:group {"align":"full","className":"ctoi-section-white","style":{"spacing":{"padding":{"top":"clamp(12px,2vw,20px)","bottom":"clamp(12px,2vw,20px)"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull ctoi-section-white" style="padding-top:clamp(12px,2vw,20px);padding-bottom:clamp(12px,2vw,20px)">
-		<!-- wp:group {"layout":{"type":"constrained","contentSize":"min(96vw, 1200px)"}} -->
-		<div class="wp-block-group" style="padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px)">
-			<!-- wp:heading {"textAlign":"center","level":2,"style":{"typography":{"fontSize":"1.25rem","fontWeight":"400"},"color":{"text":"#202124"}}} -->
-			<h2 class="wp-block-heading has-text-align-center" style="color:#202124;font-size:1.25rem;font-weight:400"><?php esc_html_e( 'Careers', 'ctoi' ); ?></h2>
-			<!-- /wp:heading -->
-			<!-- wp:spacer {"height":"12px"} -->
-			<div style="height:12px" aria-hidden="true" class="wp-block-spacer"></div>
-			<!-- /wp:spacer -->
-			<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"12px"}}},"className":"ctoi-careers-cards"} -->
-			<div class="wp-block-columns alignwide ctoi-careers-cards">
-				<!-- wp:column {"width":"33.33%"} -->
-				<div class="wp-block-column" style="flex-basis:33.33%">
-					<!-- wp:group {"className":"ctoi-careers-card","style":{"spacing":{"padding":{"top":"14px","bottom":"14px","left":"16px","right":"16px"}},"border":{"width":"1px","color":"#e8eaed","radius":"8px"},"layout":{"type":"default"}} -->
-					<div class="wp-block-group ctoi-careers-card" style="border-width:1px;border-color:#e8eaed;border-radius:8px;padding-top:14px;padding-right:16px;padding-bottom:14px;padding-left:16px">
-						<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"500"},"color":{"text":"#202124"}}} -->
-						<h3 class="wp-block-heading" style="color:#202124;font-size:1.125rem;font-weight:500"><?php esc_html_e( 'Jobs', 'ctoi' ); ?></h3>
-						<!-- /wp:heading -->
-						<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9375rem"},"color":{"text":"#5f6368"}}} -->
-						<p style="color:#5f6368;font-size:0.9375rem"><?php esc_html_e( 'Browse all internship opportunities from top companies.', 'ctoi' ); ?></p>
-						<!-- /wp:paragraph -->
-						<!-- wp:button {"url":"/internships/","style":{"typography":{"fontSize":"0.875rem"},"color":{"background":"#4285F4","text":"#ffffff"}}} -->
-						<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/internships/" style="font-size:0.875rem;background-color:#4285F4;color:#fff"><?php esc_html_e( 'View jobs', 'ctoi' ); ?></a></div>
-						<!-- /wp:button -->
-					</div>
-					<!-- /wp:group -->
-				</div>
-				<!-- /wp:column -->
-				<!-- wp:column {"width":"33.33%"} -->
-				<div class="wp-block-column" style="flex-basis:33.33%">
-					<!-- wp:group {"className":"ctoi-careers-card","style":{"spacing":{"padding":{"top":"14px","bottom":"14px","left":"16px","right":"16px"}},"border":{"width":"1px","color":"#e8eaed","radius":"8px"},"layout":{"type":"default"}} -->
-					<div class="wp-block-group ctoi-careers-card" style="border-width:1px;border-color:#e8eaed;border-radius:8px;padding-top:14px;padding-right:16px;padding-bottom:14px;padding-left:16px">
-						<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"500"},"color":{"text":"#202124"}}} -->
-						<h3 class="wp-block-heading" style="color:#202124;font-size:1.125rem;font-weight:500"><?php esc_html_e( 'Students', 'ctoi' ); ?></h3>
-						<!-- /wp:heading -->
-						<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9375rem"},"color":{"text":"#5f6368"}}} -->
-						<p style="color:#5f6368;font-size:0.9375rem"><?php esc_html_e( 'Internships designed for students and recent graduates.', 'ctoi' ); ?></p>
-						<!-- /wp:paragraph -->
-						<!-- wp:button {"url":"/internships/","className":"is-style-google-outline","style":{"typography":{"fontSize":"0.875rem"}}} -->
-						<div class="wp-block-button is-style-google-outline"><a class="wp-block-button__link wp-element-button" href="/internships/" style="font-size:0.875rem"><?php esc_html_e( 'Explore', 'ctoi' ); ?></a></div>
-						<!-- /wp:button -->
-					</div>
-					<!-- /wp:group -->
-				</div>
-				<!-- /wp:column -->
-				<!-- wp:column {"width":"33.33%"} -->
-				<div class="wp-block-column" style="flex-basis:33.33%">
-					<!-- wp:group {"className":"ctoi-careers-card","style":{"spacing":{"padding":{"top":"14px","bottom":"14px","left":"16px","right":"16px"}},"border":{"width":"1px","color":"#e8eaed","radius":"8px"},"layout":{"type":"default"}} -->
-					<div class="wp-block-group ctoi-careers-card" style="border-width:1px;border-color:#e8eaed;border-radius:8px;padding-top:14px;padding-right:16px;padding-bottom:14px;padding-left:16px">
-						<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"500"},"color":{"text":"#202124"}}} -->
-						<h3 class="wp-block-heading" style="color:#202124;font-size:1.125rem;font-weight:500"><?php esc_html_e( 'Your career', 'ctoi' ); ?></h3>
-						<!-- /wp:heading -->
-						<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9375rem"},"color":{"text":"#5f6368"}}} -->
-						<p style="color:#5f6368;font-size:0.9375rem"><?php esc_html_e( 'Upload your resume. Get discovered by companies. Build your future.', 'ctoi' ); ?></p>
-						<!-- /wp:paragraph -->
-						<!-- wp:button {"url":"/upload-resume/","className":"is-style-google-outline","style":{"typography":{"fontSize":"0.875rem"}}} -->
-						<div class="wp-block-button is-style-google-outline"><a class="wp-block-button__link wp-element-button" href="/upload-resume/" style="font-size:0.875rem"><?php esc_html_e( 'Get started', 'ctoi' ); ?></a></div>
-						<!-- /wp:button -->
-					</div>
-					<!-- /wp:group -->
-				</div>
-				<!-- /wp:column -->
+	<!-- wp:group {"className":"ctoi-life-section","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group ctoi-life-section">
+		<!-- wp:heading {"textAlign":"center","level":2,"className":"ctoi-h2"} -->
+		<h2 class="wp-block-heading has-text-align-center ctoi-h2"><?php esc_html_e( 'Life at ctoi', 'ctoi' ); ?></h2>
+		<!-- /wp:heading -->
+		<!-- wp:columns -->
+		<div class="wp-block-columns">
+			<!-- wp:column -->
+			<div class="wp-block-column">
+				<!-- wp:paragraph -->
+				<p class="ctoi-muted"><?php esc_html_e( 'We believe in connecting talented students with meaningful opportunities. Our platform brings together ambitious interns and forward-thinking companies to build the future of work.', 'ctoi' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
-			<!-- /wp:columns -->
-		</div>
-		<!-- /wp:group -->
-	</div>
-	<!-- /wp:group -->
-
-	<!-- Latest internships -->
-	<!-- wp:group {"align":"full","className":"ctoi-section-gray","style":{"spacing":{"padding":{"top":"clamp(12px,2vw,20px)","bottom":"clamp(12px,2vw,20px)"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull ctoi-section-gray" style="background-color:#f8f9fa;padding-top:clamp(12px,2vw,20px);padding-bottom:clamp(12px,2vw,20px)">
-		<!-- wp:group {"layout":{"type":"constrained","contentSize":"min(96vw, 1200px)"}} -->
-		<div class="wp-block-group" style="padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px)">
-			<!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"1.25rem","fontWeight":"400"},"color":{"text":"#202124"}}} -->
-			<h2 class="wp-block-heading" style="color:#202124;font-size:1.25rem;font-weight:400"><?php esc_html_e( 'Latest internships', 'ctoi' ); ?></h2>
-			<!-- /wp:heading -->
-			<!-- wp:spacer {"height":"8px"} -->
-			<div style="height:8px" aria-hidden="true" class="wp-block-spacer"></div>
-			<!-- /wp:spacer -->
-			<!-- wp:pattern {"slug":"ctoi/internship-grid"} /-->
-		</div>
-		<!-- /wp:group -->
-	</div>
-	<!-- /wp:group -->
-
-	<!-- Equal Opportunity -->
-	<!-- wp:group {"align":"full","className":"ctoi-equal-opportunity","style":{"spacing":{"padding":{"top":"clamp(12px,2vw,20px)","bottom":"clamp(12px,2vw,20px)"}}},"color":{"background":"#f8f9fa"},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull ctoi-equal-opportunity has-background" style="background-color:#f8f9fa;padding-top:clamp(12px,2vw,20px);padding-bottom:clamp(12px,2vw,20px)">
-		<!-- wp:group {"layout":{"type":"constrained","contentSize":"min(96vw, 800px)"}} -->
-		<div class="wp-block-group" style="padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px);margin-left:auto;margin-right:auto">
-			<!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"1.125rem","fontWeight":"400"},"color":{"text":"#202124"}}} -->
-			<h2 class="wp-block-heading" style="color:#202124;font-size:1.125rem;font-weight:400"><?php esc_html_e( 'Equal Opportunity', 'ctoi' ); ?></h2>
-			<!-- /wp:heading -->
-			<!-- wp:paragraph {"style":{"typography":{"fontSize":"1rem","lineHeight":"1.6"},"color":{"text":"#5f6368"}}} -->
-			<p style="color:#5f6368;font-size:1rem;line-height:1.6"><?php esc_html_e( 'ctoi is proud to be an equal opportunity employer. We are committed to building a workforce that is representative of the users we serve, creating a culture of belonging, and providing equal employment opportunity regardless of race, creed, color, religion, gender, sexual orientation, gender identity/expression, national origin, disability, age, or any other basis protected by law.', 'ctoi' ); ?></p>
-			<!-- /wp:paragraph -->
-		</div>
-		<!-- /wp:group -->
-	</div>
-	<!-- /wp:group -->
-
-	<!-- CTA -->
-	<!-- wp:group {"align":"full","className":"ctoi-section-white","style":{"spacing":{"padding":{"top":"clamp(12px,2vw,20px)","bottom":"clamp(12px,2vw,20px)"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group alignfull ctoi-section-white" style="padding-top:clamp(12px,2vw,20px);padding-bottom:clamp(12px,2vw,20px)">
-		<!-- wp:group {"layout":{"type":"constrained","contentSize":"min(96vw, 720px)"}} -->
-		<div class="wp-block-group" style="padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px)">
-			<!-- wp:heading {"textAlign":"center","level":2,"style":{"typography":{"fontSize":"1.25rem","fontWeight":"400"},"color":{"text":"#202124"}}} -->
-			<h2 class="wp-block-heading has-text-align-center" style="color:#202124;font-size:1.25rem;font-weight:400"><?php esc_html_e( 'Ready to get started?', 'ctoi' ); ?></h2>
-			<!-- /wp:heading -->
-			<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"1rem"},"color":{"text":"#5f6368"}}} -->
-			<p class="has-text-align-center" style="color:#5f6368;font-size:1rem"><?php esc_html_e( 'Sign in with Google to create your account.', 'ctoi' ); ?></p>
-			<!-- /wp:paragraph -->
-			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-			<div class="wp-block-buttons">
-				<!-- wp:button {"url":"/login/","style":{"typography":{"fontSize":"0.875rem"},"color":{"background":"#4285F4","text":"#ffffff"}}} -->
-				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/login/" style="font-size:0.875rem;background-color:#4285F4;color:#fff"><?php esc_html_e( 'Sign in', 'ctoi' ); ?></a></div>
-				<!-- /wp:button -->
+			<!-- /wp:column -->
+			<!-- wp:column -->
+			<div class="wp-block-column">
+				<!-- wp:paragraph -->
+				<p class="ctoi-muted"><?php esc_html_e( 'Whether you are looking for your first internship or a company seeking top talent, ctoi provides the tools and support to make great matches happen.', 'ctoi' ); ?></p>
+				<!-- /wp:paragraph -->
 			</div>
-			<!-- /wp:buttons -->
+			<!-- /wp:column -->
 		</div>
-		<!-- /wp:group -->
+		<!-- /wp:columns -->
 	</div>
 	<!-- /wp:group -->
 </div>

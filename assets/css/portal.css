@@ -1,0 +1,285 @@
+/**
+ * ctoi Portal — Single UI stylesheet
+ * Google Careers / Corporate Clean design system
+ * High-performance, minimalist luxury internship matching platform
+ */
+
+:root {
+  --ctoi-primary: #1A73E8;
+  --ctoi-primary-hover: #1557B0;
+  --ctoi-charcoal: #202124;
+  --ctoi-muted: #5F6368;
+  --ctoi-border: #DADCE0;
+  --ctoi-subtle: #F8F9FA;
+  --ctoi-success: #34A853;
+  --ctoi-alert: #EA4335;
+  --ctoi-radius: 8px;
+  --ctoi-radius-sm: 4px;
+  --ctoi-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  --ctoi-shadow-focus: 0 2px 8px rgba(26,115,232,0.15);
+  --ctoi-container: min(96vw, 1280px);
+}
+
+/* Typography — Inter, line-height 1.6, headings semi-bold */
+body.ctoi-portal, .ctoi-page, .ctoi-dashboard { font-family: Inter, system-ui, sans-serif; line-height: 1.6; }
+.ctoi-h1, .ctoi-h2, .ctoi-h3 { letter-spacing: -0.02em; }
+.ctoi-mono { font-family: ui-monospace, 'Cascadia Code', monospace; font-size: 0.8125rem; }
+
+/* Layout */
+.ctoi-page { max-width: var(--ctoi-container); margin: 0 auto; padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 24px); }
+.ctoi-section { margin-bottom: 2rem; }
+
+/* Typography */
+.ctoi-h1 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; color: var(--ctoi-charcoal); margin: 0 0 1rem; }
+.ctoi-h2 { font-size: 1.25rem; font-weight: 600; color: var(--ctoi-charcoal); margin: 0 0 0.75rem; }
+.ctoi-h3 { font-size: 1.0625rem; font-weight: 500; color: var(--ctoi-charcoal); margin: 0 0 0.5rem; }
+.ctoi-muted { color: var(--ctoi-muted); font-size: 0.9375rem; }
+
+/* Buttons */
+.ctoi-btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 24px; border-radius: var(--ctoi-radius-sm); font-weight: 500; font-size: 0.875rem; text-decoration: none; cursor: pointer; border: none; transition: background 0.2s; }
+.ctoi-btn-primary { background: var(--ctoi-primary); color: #fff; }
+.ctoi-btn-primary:hover { background: var(--ctoi-primary-hover); }
+.ctoi-btn-secondary { background: #fff; color: var(--ctoi-charcoal); border: 1px solid var(--ctoi-border); }
+.ctoi-btn-secondary:hover { background: var(--ctoi-subtle); }
+
+/* Cards */
+.ctoi-card { padding: 20px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); box-shadow: var(--ctoi-shadow); margin-bottom: 16px; }
+.ctoi-card h3, .ctoi-card h4 { margin: 0 0 8px; font-size: 1.125rem; font-weight: 500; }
+.ctoi-card a { color: var(--ctoi-primary); text-decoration: none; }
+.ctoi-card a:hover { text-decoration: underline; }
+
+/* Stats grid */
+.ctoi-stats, .ctoi-stats-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 1.5rem 0; }
+.ctoi-stat, .ctoi-stat-card { padding: 20px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); text-align: center; }
+.ctoi-stat.highlight, .ctoi-stat-card.ctoi-stat-interviews { background: #f0f9ff; border-color: var(--ctoi-primary); }
+.ctoi-stat-card.ctoi-stat-pending { background: #fff8e1; border-color: #ffc107; }
+.ctoi-stat-value { display: block; font-size: 1.75rem; font-weight: 600; color: var(--ctoi-charcoal); }
+.ctoi-stat-label { font-size: 0.8125rem; color: var(--ctoi-muted); }
+.ctoi-dashboard-tabs { display: flex; gap: 8px; margin: 1.5em 0; border-bottom: 1px solid var(--ctoi-border); }
+.ctoi-resume-card .ctoi-meta, .ctoi-resume-card .skills { font-size: 0.9375rem; color: var(--ctoi-muted); margin-top: 8px; }
+.ctoi-empty-resumes, .ctoi-empty-internships { padding: 2rem; text-align: center; color: var(--ctoi-muted); }
+.ctoi-empty-resumes a, .ctoi-empty-internships a { color: var(--ctoi-primary); }
+
+/* Tabs */
+.ctoi-tabs { display: flex; gap: 8px; margin: 1.5rem 0; border-bottom: 1px solid var(--ctoi-border); }
+.ctoi-tab { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9375rem; color: var(--ctoi-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.ctoi-tab:hover { color: var(--ctoi-charcoal); }
+.ctoi-tab.active { color: var(--ctoi-primary); border-bottom-color: var(--ctoi-primary); font-weight: 500; }
+.ctoi-tab-content { padding: 1.5rem 0; }
+
+/* Status pills */
+.ctoi-pill { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8125rem; font-weight: 500; }
+.ctoi-pill.pending { background: #FFF3E0; color: #E65100; }
+.ctoi-pill.viewed { background: #E3F2FD; color: #1565C0; }
+.ctoi-pill.shortlisted { background: #E8F5E9; color: #2E7D32; }
+.ctoi-pill.interviewing { background: #E3F2FD; color: var(--ctoi-primary); }
+.ctoi-pill.rejected { background: #FFEBEE; color: #C62828; }
+.ctoi-pill.hired { background: #E8F5E9; color: var(--ctoi-success); }
+.ctoi-pill.withdrawn { background: var(--ctoi-subtle); color: var(--ctoi-muted); }
+.ctoi-pill.new { background: #E8F5E9; color: var(--ctoi-success); }
+
+/* Forms */
+.ctoi-field { margin-bottom: 1.25rem; }
+.ctoi-field label { display: block; font-weight: 500; margin-bottom: 0.35em; color: var(--ctoi-charcoal); }
+.ctoi-field input[type="text"], .ctoi-field input[type="email"], .ctoi-field textarea, .ctoi-field select { width: 100%; padding: 10px 12px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius-sm); font-size: 1rem; transition: border-color 0.2s; }
+.ctoi-field input:focus, .ctoi-field textarea:focus, .ctoi-field select:focus { outline: none; border-color: var(--ctoi-primary); border-width: 2px; padding: 9px 11px; box-shadow: var(--ctoi-shadow-focus); }
+.ctoi-field-hint { font-size: 0.875rem; color: var(--ctoi-muted); margin-top: 4px; }
+
+/* Application / resume cards */
+.ctoi-app-card, .ctoi-application-card, .ctoi-resume-card { padding: 20px; margin-bottom: 16px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); background: #fff; }
+.ctoi-application-card .status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8125rem; font-weight: 500; margin-top: 8px; margin-right: 8px; }
+.ctoi-app-card h4, .ctoi-resume-card h4 { margin: 0 0 8px; font-size: 1.125rem; }
+.ctoi-app-card .ctoi-meta, .ctoi-resume-card .ctoi-meta { font-size: 0.9375rem; color: var(--ctoi-muted); margin: 8px 0; }
+.ctoi-app-card .ctoi-actions, .ctoi-resume-card .ctoi-actions { margin-top: 12px; }
+.ctoi-app-card .ctoi-actions a, .ctoi-app-card .ctoi-actions button, .ctoi-resume-card .ctoi-actions a, .ctoi-resume-card .ctoi-actions button { margin-right: 12px; font-size: 0.9375rem; color: var(--ctoi-primary); background: none; border: none; cursor: pointer; padding: 0; }
+.ctoi-app-card .ctoi-actions a:hover, .ctoi-resume-card .ctoi-actions a:hover { text-decoration: underline; }
+
+/* Company dashboard */
+.ctoi-dashboard-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 1.5rem 0; }
+.ctoi-internship-card { padding: 20px; margin-bottom: 16px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); background: #fff; }
+.ctoi-internship-card h4 { margin: 0 0 8px; }
+.ctoi-internship-card .ctoi-meta { font-size: 0.9375rem; color: var(--ctoi-muted); margin: 8px 0; }
+.ctoi-internship-card .ctoi-actions { margin-top: 12px; }
+.ctoi-internship-card .ctoi-actions a, .ctoi-internship-card .ctoi-actions button { margin-right: 12px; font-size: 0.9375rem; color: var(--ctoi-primary); background: none; border: none; cursor: pointer; padding: 0; text-decoration: none; }
+.ctoi-internship-card .ctoi-actions button.ctoi-link { background: none; border: none; padding: 0; text-decoration: underline; color: var(--ctoi-primary); cursor: pointer; }
+.ctoi-applications-panel { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--ctoi-border); }
+.ctoi-app-item { padding: 12px; margin: 8px 0; background: var(--ctoi-subtle); border-radius: var(--ctoi-radius-sm); border: 1px solid var(--ctoi-border); }
+.ctoi-app-item .status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8125rem; font-weight: 500; margin-left: 8px; }
+.ctoi-app-item .status.pending { background: #FFF3E0; color: #E65100; }
+.ctoi-app-item .status.viewed, .ctoi-app-item .status.interviewing { background: #E3F2FD; color: var(--ctoi-primary); }
+.ctoi-app-item .status.shortlisted, .ctoi-app-item .status.hired { background: #E8F5E9; color: var(--ctoi-success); }
+.ctoi-app-item .status.rejected { background: #FFEBEE; color: #C62828; }
+.ctoi-app-item button.ctoi-link { background: none; border: none; padding: 0; font-size: inherit; color: var(--ctoi-primary); cursor: pointer; text-decoration: underline; }
+.ctoi-app-item .ctoi-app-actions { margin-top: 8px; }
+.ctoi-app-item .ctoi-app-actions button { margin-right: 8px; padding: 4px 12px; font-size: 0.8125rem; border-radius: var(--ctoi-radius-sm); background: #fff; border: 1px solid var(--ctoi-border); color: var(--ctoi-charcoal); cursor: pointer; }
+.ctoi-app-item .ctoi-app-actions button:hover { background: var(--ctoi-subtle); }
+.ctoi-app-item .ctoi-app-actions button.ctoi-shortlist:hover { border-color: var(--ctoi-success); color: var(--ctoi-success); }
+.ctoi-app-item .ctoi-app-actions button.ctoi-reject:hover { border-color: var(--ctoi-alert); color: var(--ctoi-alert); }
+
+/* Google Sign-In button */
+.ctoi-google-login { margin: 1rem 0; }
+.ctoi-google-signin-btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 24px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius-sm); font-weight: 500; font-size: 1rem; color: var(--ctoi-charcoal); text-decoration: none; cursor: pointer; transition: background 0.2s; box-shadow: var(--ctoi-shadow); }
+.ctoi-google-signin-btn:hover { background: var(--ctoi-subtle); }
+.ctoi-google-logo { flex-shrink: 0; }
+
+/* Login page */
+.ctoi-login-card { max-width: 400px; margin: 0 auto; padding: 48px 40px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); box-shadow: var(--ctoi-shadow); }
+
+/* Post internship form */
+#ctoi-post-internship.ctoi-form { max-width: 640px; margin: 2em 0; }
+#ctoi-post-internship .ctoi-submit { padding: 10px 24px; background: var(--ctoi-primary); color: #fff; border: none; border-radius: var(--ctoi-radius-sm); cursor: pointer; font-weight: 500; }
+#ctoi-post-internship .ctoi-cancel { margin-left: 12px; color: var(--ctoi-primary); }
+
+/* Apply form */
+.ctoi-apply-card { max-width: 600px; margin: 0 auto; padding: clamp(24px, 4vw, 40px); background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); box-shadow: var(--ctoi-shadow); }
+.ctoi-apply-card .ctoi-field { margin-bottom: 1.25rem; }
+.ctoi-apply-submit { padding: 10px 24px; background: var(--ctoi-primary); color: #fff; border: none; border-radius: var(--ctoi-radius-sm); font-weight: 500; cursor: pointer; }
+.ctoi-apply-submit:hover { background: var(--ctoi-primary-hover); }
+.ctoi-applied-state { padding: 24px; background: #f0f9f0; border-radius: var(--ctoi-radius); text-align: center; }
+.ctoi-error { color: var(--ctoi-alert); }
+.ctoi-success { color: var(--ctoi-success); }
+
+/* Candidate search */
+#ctoi-candidate-search { max-width: 900px; margin: 1em 0; }
+.ctoi-search-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.ctoi-search-filters input, .ctoi-search-filters button { padding: 8px 12px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius-sm); }
+.ctoi-search-filters button { background: var(--ctoi-primary); color: #fff; cursor: pointer; border: none; font-weight: 500; }
+.ctoi-search-filters button:hover { background: var(--ctoi-primary-hover); }
+.ctoi-search-results { margin-top: 20px; }
+.ctoi-candidate-card { padding: 16px; margin-bottom: 12px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); background: #fff; }
+.ctoi-candidate-card h4 { margin: 0 0 8px 0; }
+.ctoi-candidate-card .skills { color: var(--ctoi-muted); font-size: 0.9em; }
+
+/* Resume upload */
+.ctoi-resume-upload .ctoi-apply-hint { margin-bottom: 1rem; padding: 12px; background: var(--ctoi-subtle); border-radius: var(--ctoi-radius-sm); }
+.ctoi-resume-upload input[type="file"] { padding: 8px 0; }
+
+/* Choose role */
+.ctoi-choose-role { max-width: 520px; margin: 0 auto; }
+.ctoi-choose-role-welcome { font-size: 1.25rem; font-weight: 500; color: var(--ctoi-charcoal); margin-bottom: 1.5rem; }
+.ctoi-choose-role-form { margin-top: 1.5rem; }
+.ctoi-choose-role-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 1.5rem; }
+.ctoi-choose-role-card { display: block; cursor: pointer; margin: 0; }
+.ctoi-choose-role-card input { position: absolute; opacity: 0; pointer-events: none; }
+.ctoi-choose-role-card-inner { display: block; padding: 24px; background: #fff; border: 2px solid var(--ctoi-border); border-radius: var(--ctoi-radius); text-align: center; transition: border-color 0.2s, background 0.2s; }
+.ctoi-choose-role-card:hover .ctoi-choose-role-card-inner { border-color: var(--ctoi-primary); background: #f0f9ff; }
+.ctoi-choose-role-card input:checked + .ctoi-choose-role-card-inner { border-color: var(--ctoi-primary); background: #f0f9ff; }
+.ctoi-choose-role-icon { display: block; font-size: 2rem; margin-bottom: 12px; }
+.ctoi-choose-role-card strong { display: block; font-size: 1rem; color: var(--ctoi-charcoal); margin-bottom: 8px; }
+.ctoi-choose-role-desc { font-size: 0.875rem; color: var(--ctoi-muted); line-height: 1.4; }
+@media (max-width: 600px) { .ctoi-choose-role-options { grid-template-columns: 1fr; } }
+
+/* Loading / empty states */
+.ctoi-loading { padding: 2rem; text-align: center; color: var(--ctoi-muted); }
+.ctoi-empty { padding: 2rem; text-align: center; color: var(--ctoi-muted); }
+.ctoi-empty a { color: var(--ctoi-primary); }
+
+/* ========== Homepage: Hero, Global Search, Feature Grid, Life at ctoi ========== */
+.ctoi-hero { text-align: center; padding: clamp(48px, 8vw, 96px) 0; }
+.ctoi-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
+.ctoi-hero h1 .ctoi-accent { color: var(--ctoi-primary); }
+.ctoi-global-search { max-width: 560px; margin: 2rem auto; position: relative; }
+.ctoi-global-search input { width: 100%; padding: 14px 20px 14px 48px; border: 1px solid var(--ctoi-border); border-radius: 24px; font-size: 1rem; background: #fff; transition: box-shadow 0.2s, border-color 0.2s; }
+.ctoi-global-search input:focus { outline: none; border-color: var(--ctoi-primary); box-shadow: var(--ctoi-shadow-focus); }
+.ctoi-global-search .ctoi-search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--ctoi-muted); pointer-events: none; }
+.ctoi-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 3rem 0; }
+.ctoi-feature-item { text-align: center; }
+.ctoi-feature-icon { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.ctoi-feature-icon.blue { background: rgba(26,115,232,0.12); color: var(--ctoi-primary); }
+.ctoi-feature-icon.green { background: rgba(52,168,83,0.12); color: var(--ctoi-success); }
+.ctoi-feature-icon.red { background: rgba(234,67,53,0.12); color: var(--ctoi-alert); }
+.ctoi-feature-item h3 { font-size: 1rem; font-weight: 500; margin: 0 0 8px; }
+.ctoi-feature-item p { font-size: 0.9375rem; color: var(--ctoi-muted); margin: 0; }
+.ctoi-life-section { padding: 4rem 0; }
+.ctoi-life-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 3rem; }
+.ctoi-life-block:nth-child(even) { direction: rtl; }
+.ctoi-life-block:nth-child(even) > * { direction: ltr; }
+.ctoi-life-block h3 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1rem; }
+.ctoi-life-block p { color: var(--ctoi-muted); margin: 0; line-height: 1.6; }
+.ctoi-life-block .ctoi-life-image { aspect-ratio: 16/10; background: var(--ctoi-subtle); border-radius: var(--ctoi-radius); }
+
+/* ========== Internship Archive: sidebar, job cards, New badge ========== */
+.ctoi-archive-layout { display: grid; grid-template-columns: 260px 1fr; gap: 32px; }
+.ctoi-archive-sidebar { padding: 24px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); height: fit-content; position: sticky; top: 24px; }
+.ctoi-archive-sidebar h3 { font-size: 0.9375rem; font-weight: 600; margin: 0 0 16px; color: var(--ctoi-charcoal); }
+.ctoi-filter-list { list-style: none; margin: 0; padding: 0; }
+.ctoi-filter-list li { margin: 0 0 8px; }
+.ctoi-filter-list a { display: block; padding: 8px 12px; border-radius: var(--ctoi-radius-sm); color: var(--ctoi-muted); text-decoration: none; font-size: 0.9375rem; transition: background 0.2s, color 0.2s; }
+.ctoi-filter-list a:hover, .ctoi-filter-list a.active { color: var(--ctoi-primary); background: rgba(26,115,232,0.08); }
+.ctoi-filter-checkbox { display: flex; align-items: center; gap: 10px; padding: 8px 0; cursor: pointer; font-size: 0.9375rem; color: var(--ctoi-charcoal); }
+.ctoi-filter-checkbox input { width: 18px; height: 18px; accent-color: var(--ctoi-primary); }
+.ctoi-job-card { padding: 24px; margin-bottom: 16px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); box-shadow: var(--ctoi-shadow); transition: border-color 0.2s; }
+.ctoi-job-card:hover { border-color: var(--ctoi-primary); }
+.ctoi-job-card h3 a { color: var(--ctoi-primary); text-decoration: none; font-weight: 500; }
+.ctoi-job-card h3 a:hover { text-decoration: underline; }
+.ctoi-job-card .ctoi-job-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9375rem; color: var(--ctoi-muted); margin: 12px 0; }
+.ctoi-job-card .ctoi-job-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.ctoi-job-card .ctoi-job-snippet { font-size: 0.9375rem; color: var(--ctoi-charcoal); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 12px 0 0; }
+.ctoi-job-card .ctoi-job-tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.ctoi-job-card .ctoi-job-tags .ctoi-pill { font-size: 0.75rem; }
+.ctoi-badge-new { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; background: #E8F5E9; color: var(--ctoi-success); margin-left: 8px; }
+
+/* ========== Student Dashboard: Gemini sidebar ========== */
+.ctoi-dashboard-with-sidebar { display: grid; grid-template-columns: 1fr 300px; gap: 32px; }
+.ctoi-gemini-sidebar { padding: 24px; background: #fff; border: 2px dashed var(--ctoi-border); border-radius: var(--ctoi-radius); height: fit-content; position: sticky; top: 24px; }
+.ctoi-gemini-sidebar h3 { font-size: 1rem; font-weight: 600; margin: 0 0 16px; }
+.ctoi-gemini-dropzone { padding: 32px; text-align: center; background: var(--ctoi-subtle); border-radius: var(--ctoi-radius-sm); margin-bottom: 16px; }
+.ctoi-gemini-dropzone a { color: var(--ctoi-primary); }
+.ctoi-gemini-processing { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 20px; color: var(--ctoi-muted); }
+.ctoi-gemini-processing .ctoi-pulse { animation: ctoi-pulse 1.5s ease-in-out infinite; }
+@keyframes ctoi-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.ctoi-verified-skills { list-style: none; margin: 0; padding: 0; }
+.ctoi-verified-skills li { display: inline-block; margin: 4px 4px 4px 0; padding: 6px 12px; background: #E8F5E9; color: var(--ctoi-success); border-radius: 20px; font-size: 0.8125rem; font-weight: 500; }
+
+/* ========== Employer dashboard: job management table ========== */
+.ctoi-job-table { width: 100%; border-collapse: collapse; }
+.ctoi-job-table th, .ctoi-job-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--ctoi-border); }
+.ctoi-job-table th { font-size: 0.8125rem; font-weight: 600; color: var(--ctoi-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.ctoi-job-table td { font-size: 0.9375rem; }
+.ctoi-job-table .ctoi-applicant-link { color: var(--ctoi-primary); font-weight: 500; }
+.ctoi-job-table .ctoi-status-active { color: var(--ctoi-success); }
+.ctoi-job-table .ctoi-status-draft { color: var(--ctoi-muted); }
+.ctoi-job-table .ctoi-status-closed { color: var(--ctoi-alert); }
+
+/* Pagination */
+.ctoi-pagination { margin-top: 2rem; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.ctoi-pagination a, .ctoi-pagination span { padding: 8px 16px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius-sm); text-decoration: none; color: var(--ctoi-charcoal); font-size: 0.9375rem; }
+.ctoi-pagination a:hover { background: var(--ctoi-subtle); border-color: var(--ctoi-primary); color: var(--ctoi-primary); }
+.ctoi-pagination .current { background: var(--ctoi-primary); color: #fff; border-color: var(--ctoi-primary); }
+
+/* ========== Post Internship: 4-step workflow ========== */
+.ctoi-steps { display: flex; gap: 8px; margin-bottom: 2rem; }
+.ctoi-step { flex: 1; padding: 12px; text-align: center; background: var(--ctoi-subtle); border-radius: var(--ctoi-radius-sm); font-size: 0.875rem; font-weight: 500; color: var(--ctoi-muted); }
+.ctoi-step.active { background: rgba(26,115,232,0.12); color: var(--ctoi-primary); }
+.ctoi-step.done { background: #E8F5E9; color: var(--ctoi-success); }
+.ctoi-step-panel { display: none; }
+.ctoi-step-panel.active { display: block; }
+.ctoi-steps-form[data-is-edit="1"] .ctoi-step-panel { display: block; }
+.ctoi-steps-form[data-is-edit="1"] .ctoi-step-prev,
+.ctoi-steps-form[data-is-edit="1"] .ctoi-step-next { display: none; }
+
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+  .ctoi-archive-layout { grid-template-columns: 1fr; }
+  .ctoi-archive-sidebar { position: static; }
+  .ctoi-dashboard-with-sidebar { grid-template-columns: 1fr; }
+  .ctoi-gemini-sidebar { position: static; }
+  .ctoi-feature-grid { grid-template-columns: 1fr; }
+  .ctoi-life-block { grid-template-columns: 1fr; gap: 24px; }
+  .ctoi-life-block:nth-child(even) { direction: ltr; }
+}
+@media (max-width: 768px) {
+  .ctoi-stats-overview { grid-template-columns: 1fr; }
+  .ctoi-dashboard-tabs { flex-wrap: wrap; }
+  .ctoi-job-table { display: block; }
+  .ctoi-job-table thead { display: none; }
+  .ctoi-job-table tr { display: block; margin-bottom: 16px; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius); padding: 16px; }
+  .ctoi-job-table td { display: block; padding: 8px 0; border: none; }
+  .ctoi-job-table td::before { content: attr(data-label); font-weight: 600; color: var(--ctoi-muted); font-size: 0.75rem; display: block; margin-bottom: 4px; }
+  .ctoi-steps { flex-direction: column; }
+  .ctoi-filter-overlay { position: fixed; inset: 0; background: #fff; z-index: 9999; padding: 24px; overflow-y: auto; }
+  .ctoi-filter-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fff; border: 1px solid var(--ctoi-border); border-radius: var(--ctoi-radius-sm); font-weight: 500; margin-bottom: 16px; }
+}
+@media (min-width: 769px) {
+  .ctoi-filter-overlay { display: none; }
+}

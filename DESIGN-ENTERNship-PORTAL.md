@@ -1,5 +1,7 @@
 # ctoi — Design & Architecture Plan
 
+*Version 2.0 — UI/UX & Workflow Documentation*
+
 ## Executive Summary
 
 **ctoi** is a world-class, high-performance internship portal that bridges premium design with heavy backend processing. **Companies** post opportunities and search a structured candidate database; **candidates** submit resumes and apply; **admins** process resumes via Google Gemini API. All users authenticate via Google OAuth.
@@ -15,10 +17,11 @@
 │                           CTOI ECOSYSTEM                                          │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │  THEME (ctoi)             │  PLUGIN (ctoi-portal)         │  EXTERNAL            │
-│  • Minimalist Luxury UI   │  • CPTs (internships, cos)    │  • Google OAuth      │
-│  • Glassmorphism, Gold    │  • Custom DB (candidates)     │  • Gemini API        │
-│  • Tailwind JIT, FSE      │  • Action Scheduler queue     │  • Elasticsearch     │
+│  • Corporate Clean UI     │  • CPTs (internships, cos)    │  • Google OAuth      │
+│  • Tailwind JIT, FSE      │  • Custom DB (candidates)     │  • Gemini API        │
+│  • Block patterns         │  • Action Scheduler queue     │  • Elasticsearch     │
 │  • Fragment caching       │  • REST API, faceted search   │  • CDN               │
+│  • Material Icons         │  • Multi-step post form       │                      │
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -30,34 +33,77 @@
 
 ## 2. Visual Identity & Design System
 
-**Concept:** *"Minimalist Luxury."*
+**Concept:** *"Corporate Clean"* — Google Careers aesthetic with Material Design principles. Option: *"Minimalist Luxury"* (gold accents) as a style variation.
 
-### Color Palette (theme.json)
+### 2.1 Color Palette (Primary: Google Careers)
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| **Base** | `#FFFFFF` | 90% of interface — backgrounds, cards, inputs |
-| **Primary Action** | `#D4AF37` / `#C5A028` | Buttons, active states, key borders, CTAs |
-| **Text** | `#1A1A1A` (Deep Charcoal) | Body text — reduces eye strain vs pure black |
+| **Google Blue** | `#1A73E8` | Primary actions, links, active states, accent text |
+| **Deep Charcoal** | `#202124` | Primary headings, body text, brand names |
+| **Muted Grey** | `#5F6368` | Secondary text, icons, meta-data, disabled states |
+| **Border Color** | `#DADCE0` | Card borders, input outlines, dividers |
+| **Subtle Background** | `#F8F9FA` | Dashboard backgrounds, alternate sections |
+| **Success Green** | `#34A853` | "New" badges, Hired status, verification icons |
+| **Alert Red** | `#EA4335` | Error messages, Rejected status |
+| **Base** | `#FFFFFF` | Cards, inputs, modal backgrounds |
+
+### 2.2 Optional: Luxury Palette (theme.json variation)
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| **Primary Action** | `#D4AF37` / `#C5A028` | Gold buttons, key borders, CTAs |
 | **Gold Light** | `#F5E6C8` | Subtle backgrounds, hover states |
 | **Gold Dark** | `#B8860B` | Hover on primary buttons |
-| **Muted** | `#F8F8F8` | Secondary surfaces |
 
-### Typography
+### 2.3 Typography
 
-| Element | Font | Rationale |
-|---------|------|-----------|
-| **Headings** | *Playfair Display* (serif) | Premium, editorial feel |
-| **UI / Body** | *Inter* (sans-serif) | Clean, highly readable, excellent for forms |
+| Element | Font | Weight | Rationale |
+|---------|------|--------|-----------|
+| **Headings** | Inter | 500–600 (semi-bold) | Tight letter-spacing, professional |
+| **Body** | Inter | 400 | Line-height 1.6, high legibility |
+| **Monospace** | System mono | — | Metadata badges, alignment |
 
+- **Primary font:** Inter (sans-serif) for all UI and body
 - **Fluid typography** via theme.json
 - **font-display: swap** for non-blocking load
 
-### Layout & Effects
+### 2.4 UI Components
 
-- **Glassmorphism:** Subtle shadows (`box-shadow`) and `backdrop-filter: blur()` on white cards for depth without clutter
-- **Borders:** Thin gold accents (`1px solid #D4AF37`) on focus/hover
-- **Spacing:** Generous whitespace — "luxury" = breathing room
+| Component | Spec |
+|-----------|------|
+| **Buttons** | 4px border-radius, 500 weight text, high-contrast hover states |
+| **Cards** | 8px border-radius, 1px solid `#DADCE0`, `box-shadow: 0 1px 2px rgba(0,0,0,0.05)` |
+| **Inputs** | Minimalist 1px border; transitions to 2px Google Blue on focus |
+| **Pills** | Circular badges for status (Pending, Interviewing, Rejected, Hired) and categories |
+| **Glassmorphism** (optional) | `backdrop-filter: blur()`, subtle shadows for depth |
+
+### 2.5 Layout & Effects
+
+- **Spacing:** Generous whitespace — max-width 1280px container, section padding 48–96px
+- **Borders:** Thin accents on focus/hover — 1px → 2px Google Blue transition
+- **Material Icons:** Search prefix, status icons, action icons
+
+### 2.6 Public UI Components
+
+#### Homepage (Hero Discovery)
+
+| Element | Spec |
+|---------|------|
+| **Hero Heading** | Large 64px: "Build for everyone." — Blue accent on "everyone" |
+| **Global Search** | Wide pill-shaped input, Material Icons search prefix; shadow intensifies on focus |
+| **Feature Grid** | Three-column layout, Material Icons in colored circular containers (Blue, Green, Red) |
+| **Life at ctoi** | Alternating image/text blocks describing culture |
+
+#### Internship Archive (`/internships`)
+
+| Area | Spec |
+|------|------|
+| **Left Sidebar** | "Filter by Category" vertical list; "Work Locations" checkboxes with custom SVG checkmarks |
+| **Job Cards** | Whitespace-heavy; title in blue (underline on hover) |
+| **Metadata Row** | Company name (bold), Location icon + text, Term icon + text |
+| **Snippet** | 2-line truncated description |
+| **Status Tags** | "New" badge (Success Green) for roles posted within 48 hours |
 
 ---
 
@@ -115,7 +161,7 @@ CREATE TABLE wp_internship_applications (
   internship_id BIGINT UNSIGNED NOT NULL,
   candidate_data_id BIGINT UNSIGNED,
   cover_letter TEXT,
-  status ENUM('pending','viewed','shortlisted','rejected') DEFAULT 'pending',
+  status ENUM('pending','viewed','shortlisted','interviewing','rejected','hired','withdrawn') DEFAULT 'pending',
   created_at DATETIME,
   INDEX idx_internship (internship_id),
   INDEX idx_user (user_id),
@@ -197,11 +243,12 @@ Resume text:
 
 ## 5. User Roles & Authentication
 
-| Role | WP Role | Capabilities |
-|------|---------|--------------|
-| **Candidate** | `candidate_user` | Submit resume, apply, view own applications |
-| **Company** | `company_user` | Post internships, search candidates, view applications |
-| **Admin** | `administrator` | Process resumes, manage all, configure |
+| Role | WP Role | Access Level | Primary Actions |
+|------|---------|--------------|-----------------|
+| **Public (Guest)** | — | Read-only | View homepage, search internships, view single internship, access login/register |
+| **Candidate** (Student) | `candidate_user` | Authenticated | Apply, dashboard (track status), upload/edit resume, view profile |
+| **Company** (Employer) | `company_user` | Authenticated | Post internships, dashboard (manage listings, applicants), search candidates |
+| **Admin** | `administrator` | System owner | Manage users, moderate internships, system settings |
 
 ### Auth Options
 
@@ -233,6 +280,42 @@ Resume text:
 - Companies and candidates never see `wp-admin`
 - All actions via custom frontend templates + REST API
 - Admin-only: resume processing queue, settings, user management
+
+---
+
+## 6A. Dashboard UI Specifications
+
+### Student (Candidate) Dashboard — "Application Command Center"
+
+| Section | Spec |
+|---------|------|
+| **Welcome** | "Welcome back, [Name]" |
+| **Stats Overview** | Three white cards with large-digit counters: |
+| | • **Applications Submitted** — count from `wp_internship_applications` |
+| | • **Profile Views** — count of employer profile clicks |
+| | • **Upcoming Interviews** — highlighted (subtle blue bg) if count > 0 |
+| **Application Table** | Columns: Position, Company, Status, Date, Actions |
+| **Status Pills** | `Pending` (grey), `Interviewing` (light blue bg + dark blue text), `Rejected` (light red bg), `Shortlisted` (green), `Hired` (success green) |
+| **Actions** | "View Details" (eye icon), "Withdraw" (trash icon) |
+| **Gemini Resume Insight** | Sidebar: dashed "Drop Zone" for upload; processing state: pulsing "Auto Awesome" icon + "Gemini is analyzing your potential..."; output: list of "Verified Skills" from PDF |
+
+### Company (Employer) Dashboard — "Hiring Efficiency"
+
+| Section | Spec |
+|---------|------|
+| **Welcome** | "Welcome, [Company Name]" |
+| **Employer Analytics** | **Active Listings**, **Total Applicants**, **Pending Reviews** (highlighted if > 0) |
+| **Job Management Table** | Columns: Position, Applicants (clickable link), Status (Active/Draft/Closed), Actions |
+| **Actions** | "Edit Listing", "View Applicants", "Close Role" |
+
+### Post Internship Workflow (Multi-Step)
+
+| Step | Fields |
+|------|--------|
+| **1. Role Details** | Title, Category, Term (taxonomy dropdown) |
+| **2. Location** | Selection from `internship_location` taxonomy |
+| **3. Description** | Rich-text editor for responsibilities and perks |
+| **4. Review & Publish** | Summary view; Publish or Save Draft |
 
 ---
 
@@ -400,13 +483,25 @@ wp-content/
 6. **Strict Schema.org** for Google Job Search
 7. **Prompt engineering** for normalized, queryable skill data
 
+**Design:** Corporate Clean / Google Careers aesthetic; Material Design; role-based dashboards (Student, Employer); multi-step Post Internship; faceted search; status pills (Pending, Interviewing, Shortlisted, Hired, Rejected).
+
 **Implemented:** Gemini Resume Parser, Google OAuth, REST API, JobPosting Schema, Resume upload, Admin processor, Candidate search shortcode.
 
 ---
 
 ## 13. User & System Workflows (Complete)
 
-### A. Candidate Workflows
+### A. Authentication Workflow
+
+| Step | Action |
+|------|--------|
+| **Entry** | User clicks "Sign In" (Header) or "Post Internship" / "Get Matched" (Home Hero) |
+| **Login Page** | Centered Google-style card; clean input fields with floating labels (or "Sign in with Google") |
+| **Role Choice** | On first login: prompt **Candidate** or **Partner (Company)** selection |
+| **Routing** | `candidate_user` → `/my-dashboard/` (or `/student-dashboard/`); `company_user` → `/company-dashboard/` (or `/employer-dashboard/`); `administrator` → WP Admin |
+| **Guest Protection** | Guest accessing `/my-dashboard/` or `/company-dashboard/` → redirect to `/login/` |
+
+### B. Candidate (Student) Workflows
 
 | Workflow | Trigger | Steps | API | UI |
 |----------|---------|-------|-----|-----|
@@ -415,25 +510,25 @@ wp-content/
 | **Update Resume** | Replace file | Same as upload, updates existing row or creates new | `POST /resume/upload` | Resume upload form |
 | **Delete Resume** | Click delete on dashboard | Soft-delete or remove from candidate_data | `DELETE /resume/:id` | Candidate dashboard |
 | **Browse Internships** | Visit /internships/ | Query CPT, show cards with apply state | `GET /internships?applied=1` | Archive template, grid pattern |
-| **Apply** | Click Apply on single internship | Select resume, cover letter → Insert `wp_internship_applications` | `POST /apply` | Application form pattern |
+| **Apply** | Click "Apply for this Role" on single internship | **Check:** `student_profile` / `wp_candidate_data` exists. If missing → redirect to "Complete Profile" (upload resume). If exists → select resume, cover letter → Insert `wp_internship_applications` | `POST /apply` | Application form pattern |
 | **Withdraw Application** | Click withdraw on dashboard | Update status to `withdrawn` | `PUT /applications/:id` | Candidate dashboard |
-| **Track Applications** | Visit /my-dashboard/ | List applications with status | `GET /my-applications` | Candidate dashboard |
+| **Track Applications** | Visit /my-dashboard/ | List applications with status pills | `GET /my-applications` | Candidate dashboard |
 | **View My Profile** | Dashboard | Show resumes, skills (from Gemini), applications | `GET /my-resumes` | Candidate dashboard |
 
-### B. Company Workflows
+### C. Company (Employer) Workflows
 
 | Workflow | Trigger | Steps | API | UI |
 |----------|---------|-------|-----|-----|
 | **Register/Login** | Sign in with Google | Same as candidate, assign `company_user` | N/A | For Companies page |
 | **Create Company Profile** | First-time setup | Create/update `company` CPT post | `POST /company` | Company onboarding |
-| **Post Internship** | Submit form on /post-internship/ | Create `internship` CPT, set meta, company link | `POST /internships` | Post internship form |
+| **Post Internship** | Submit form on /post-internship/ | Multi-step: Role Details → Location → Description → Review & Publish | `POST /internships` | Post internship form |
 | **Edit Internship** | Click edit on dashboard | Update post + meta | `PUT /internships/:id` | Company dashboard |
 | **Close Internship** | Toggle or delete | Set status/draft or trash | `DELETE /internships/:id` | Company dashboard |
 | **Search Candidates** | Visit /candidates/ | Faceted search on `wp_candidate_data` | `GET /candidates` | `[ctoi_candidate_search]` |
-| **View Applications** | Click internship on dashboard | List applications for internship | `GET /applications/:internship_id` | Company dashboard |
-| **Shortlist/Reject** | Click action on application | Update status | `PUT /applications/:id/status` | Company dashboard |
+| **View Applications** | Click applicant count or "View Applicants" | List applications for internship | `GET /applications/:internship_id` | Company dashboard |
+| **Shortlist/Reject/Hire** | Click action on application | Update status (Pending → Interviewing → Shortlisted/Hired/Rejected) | `PUT /applications/:id/status` | Company dashboard |
 
-### C. Admin Workflows
+### D. Admin Workflows
 
 | Workflow | Trigger | Steps | UI |
 |----------|---------|-------|-----|
@@ -441,8 +536,9 @@ wp-content/
 | **Manage Users** | wp-admin | Assign roles, view candidates/companies | Users screen |
 | **Configure** | wp-admin | Gemini API key, Google OAuth, mock data | ctoi Settings |
 | **Bulk Actions** | Admin | Re-process failed resumes | Resume Processor |
+| **Taxonomies** | wp-admin | Manage Term (e.g. Spring 2027), internship_location | Taxonomy screens |
 
-### D. System Workflows
+### E. System Workflows
 
 | Workflow | Trigger | Steps |
 |----------|---------|-------|
@@ -452,19 +548,40 @@ wp-content/
 
 ---
 
-## 14. Production Readiness Checklist
+## 14. Responsive Behavior
+
+| Breakpoint | Layout |
+|------------|--------|
+| **Mobile (< 768px)** | Navbar → hamburger menu; dashboard tables → Card Stack view; sidebar filters → "Filter" button opens full-screen overlay |
+| **Tablet (768px – 1024px)** | Two-column layout; sidebars 30% width |
+| **Desktop (> 1024px)** | Max-width 1280px; centralized focus |
+
+---
+
+## 15. Technical Components (WP Architecture)
+
+| Component | WP Implementation |
+|-----------|-------------------|
+| **Internships** | Custom Post Type (`internship`) |
+| **Companies** | Custom Post Type (`company`) |
+| **Locations** | Taxonomy (`internship_location`) |
+| **Terms** | Taxonomy (`term`) — e.g. Summer 2026, Fall 2026 |
+| **Applications** | Custom DB table (`wp_internship_applications`) |
+| **Candidate Data** | Custom DB table (`wp_candidate_data`) |
+| **Dashboards** | Page templates / block patterns (`page-my-dashboard`, `page-company-dashboard`) |
+| **Styling** | Tailwind CSS + CSS variables in `style.css` |
+
+---
+
+## 16. Production Readiness Checklist
 
 ### One-Click Setup
 
 **Settings → ctoi Portal → Run Setup Now** creates all required pages and flushes permalinks in one click. On first plugin activation, setup runs automatically if no pages exist. Optionally check "Also populate sample internships, companies & candidates" to fill the site with demo content.
 
-### Design System (Google Careers)
+### Page Setup (One-Click)
 
-The theme matches [Google Careers](https://www.google.com/about/careers/applications/):
-- **Layout:** Max width 1200px, section padding 48–96px
-- **Colors:** #202124 (text), #5f6368 (muted), #4285F4 (links/buttons), #e8eaed (borders), #f8f9fa (subtle bg)
-- **Components:** Pill-shaped search, 3-column Careers cards, Equal Opportunity section
-- **Footer:** Follow Life at, More about us, Related information, Privacy/Terms
+The theme matches [Google Careers](https://www.google.com/about/careers/applications/) — see Section 2 for full design system.
 
 | Slug | Title | Pattern |
 |------|-------|---------|
@@ -500,3 +617,14 @@ The theme matches [Google Careers](https://www.google.com/about/careers/applicat
 - [ ] Capability checks on REST endpoints
 - [ ] File upload: PDF/DOC/DOCX/TXT only, 5MB max
 - [ ] HTTPS enforced
+
+---
+
+## 17. Future Roadmap (Post-Launch)
+
+| Feature | Description |
+|---------|-------------|
+| **Advanced Search** | AJAX-powered filtering on internship archive (no page reload) |
+| **Application Management** | Employers change status (Pending → Interview → Hired) from dashboard |
+| **Email Notifications** | `wp_mail()` on application submission, status changes |
+| **Elasticsearch** | Scale candidate search for 10K+ profiles |
